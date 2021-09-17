@@ -75,34 +75,6 @@ namespace HomeWork_4._8
             Console.WriteLine();
             Console.WriteLine($"Кол-во месяцев с положительной прибылью: {countGoodMoths}");
 
-            // Вывод треугольника Паскаля
-            Console.WriteLine();
-            Console.WriteLine($"Треугольник Паскаля:");
-            int pascalRows = 5;
-            int[] prevRow = { };
-            for (int i = 0; i < pascalRows; i++)
-            {
-                int[] row = GeneratePascalRow(prevRow);
-                prevRow = row;
-                int countSpaces = pascalRows - i;
-                for (int j = 0; j < countSpaces; j++)
-                {
-                    Console.Write(" ");
-                }
-
-                for (int j = 0; j < row.GetLength(0); j++)
-                {
-                    Console.Write($"{row[j]} ");
-                }
-
-                for (int j = 0; j < countSpaces - 1; j++)
-                {
-                    Console.Write("");
-                }
-
-                Console.WriteLine();
-            }
-
 
             // Работа с матрицами с учетом исключений
             Console.WriteLine();
@@ -166,39 +138,6 @@ namespace HomeWork_4._8
             }
 
             Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Генерация следующей строки треугольника Паскаля
-        /// </summary>
-        /// <param name="prevRow">Предыдущая строка треугольника в ввиде одномерного массива</param>
-        /// <returns></returns>
-        private static int[] GeneratePascalRow(int[] prevRow)
-        {
-            int[] row = { 1 };
-            if (prevRow.Length == 0) return row;
-
-            int rowLength = prevRow.Length + 1;
-
-            int[] newRow = new int[rowLength];
-            for (int i = 0; i < newRow.GetLength(0); i++)
-            {
-                if (i == 0)
-                {
-                    newRow[i] = 1;
-                    continue;
-                }
-
-                if (i < prevRow.Length)
-                {
-                    newRow[i] = prevRow[i] + prevRow[i - 1];
-                    continue;
-                }
-
-                newRow[i] = 1;
-            }
-
-            return newRow;
         }
 
         /// <summary>
