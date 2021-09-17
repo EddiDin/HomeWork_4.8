@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace HomeWork_4._8
 {
@@ -7,75 +6,6 @@ namespace HomeWork_4._8
     {
         static void Main(string[] args)
         {
-            // Константа для ограничения генерации рандомного значения для прибыли или расходов в месяц
-            const int MAX_FINANCE = 10000000;
-
-            int[,] financeTable = new int[12, 4];
-            Random rand = new Random();
-            List<Month> Months = new List<Month>();
-
-            // Формирую таблицу с финансовыми показателями.
-            // Заодно сразу заношу месяцы в List<Month> для последующей удобной сортировки. Там содержаться объекты с номером месяца и прибылью.
-            for (int i = 0; i < financeTable.GetLength(0); i++)
-            {
-                Month month = new Month();
-
-                for (int j = 0; j < financeTable.GetLength(1); j++)
-                {
-                    if (j == 0)
-                    {
-                        financeTable[i, j] = i + 1;
-                        month.MonthNumber = financeTable[i, j];
-                    }
-                    if (j == 1 || j == 2)
-                    {
-                        financeTable[i, j] = rand.Next(MAX_FINANCE);
-                    }
-                    if (j == 3)
-                    {
-                        financeTable[i, j] = financeTable[i, j - 2] - financeTable[i, j - 1];
-                        month.Profit = financeTable[i, j];
-                    }
-                }
-
-                Months.Add(month);
-            }
-
-            // Вывод таблицы на экран
-            Console.WriteLine($"{"Номер месяца",12} {"Доход",12} {"Расход",12} {"Прибыль",12} ");
-            for (int i = 0; i < financeTable.GetLength(0); i++)
-            {
-                for (int j = 0; j < financeTable.GetLength(1); j++)
-                {
-                    Console.Write($"{financeTable[i, j],12} ");
-                }
-                Console.WriteLine();
-            }
-
-            // Далее сортировка и расчет и вывод худших месяцев (с учетом одинаковых значений) и кол-ва месяцев с положительной прибылью
-            Months.Sort(CompareByProfit);
-
-            int badMonthCounter = 0;
-            int countGoodMoths = 0;
-            Console.WriteLine();
-            Console.WriteLine($"Месяцы с худшей прибылью:");
-            for (int i = 0; i < Months.Count; i++)
-            {
-                if (Months[i].Profit > 0) countGoodMoths++;
-                if (badMonthCounter != 3)
-                {
-                    Console.WriteLine($"Месяц: {Months[i].MonthNumber}   Прибыль: {Months[i].Profit}");
-                    if (i == 0 || Months[i].Profit != Months[i - 1].Profit)
-                    {
-                        badMonthCounter++;
-                    }
-                }
-            }
-
-            Console.WriteLine();
-            Console.WriteLine($"Кол-во месяцев с положительной прибылью: {countGoodMoths}");
-
-
             // Работа с матрицами с учетом исключений
             Console.WriteLine();
             Console.WriteLine("Умножение матрицы на число:");
@@ -138,19 +68,6 @@ namespace HomeWork_4._8
             }
 
             Console.ReadKey();
-        }
-
-        /// <summary>
-        /// Функция сравнения элементов списка месяцев из таблицы финансов (List<Month>)
-        /// </summary>
-        /// <param name="x">Элемент списка</param>
-        /// <param name="y">Элемент списка</param>
-        /// <returns></returns>
-        private static int CompareByProfit(Month x, Month y)
-        {
-            if (y.Profit < x.Profit) return 1;
-            if (y.Profit > x.Profit) return -1;
-            return 0;
         }
     }
 }
