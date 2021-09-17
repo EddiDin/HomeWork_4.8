@@ -19,6 +19,8 @@ namespace HomeWork_4._8_1
 
             Console.WriteLine();
             Console.WriteLine($"Кол-во месяцев с положительной прибылью: {GetGoodMonthsCount(Months)}");
+
+            Console.ReadKey();
         }
 
         /// <summary>

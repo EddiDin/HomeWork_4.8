@@ -10,6 +10,8 @@ namespace HomeWork_4._8_2
             int[][] triangleData = GenerateTriangleData(PASCAL_TRIANGLE_ROWS);
             int widthOfMaxNumber = FindWidthOfMaxNumber(triangleData);
             ShowPascalTriangle(triangleData, widthOfMaxNumber);
+
+            Console.ReadKey();
         }
 
         /// <summary>
