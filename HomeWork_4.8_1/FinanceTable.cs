@@ -37,7 +37,11 @@ namespace HomeWork_4._8_1
                 if (badMonthCounter != 3)
                 {
                     Console.WriteLine($"Месяц: {Months[i].MonthNumber}   Прибыль: {Months[i].Profit}");
-                    if (i + 1 == Months.Count - 1 || Months[i].Profit != Months[i + 1].Profit)
+                    if (i + 1 == Months.Count)
+                    {
+                        badMonthCounter++;
+                    }
+                    else if (Months[i].Profit != Months[i + 1].Profit)
                     {
                         badMonthCounter++;
                     }
@@ -68,7 +72,7 @@ namespace HomeWork_4._8_1
         public static int[,] GenerateFinanceTable()
         {
             Random rand = new Random();
-            const int MAX_FINANCE = 500000;
+            const int MAX_FINANCE = 400000;
             int[,] financeTable = new int[12, 4];
 
             for (int i = 0; i < financeTable.GetLength(0); i++)
